@@ -4,224 +4,384 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concerto - Your Cyber Automation Conductor</title>
-    <meta name="description" content="Expert cyber automation consulting services. We orchestrate seamless SOAR implementations and security workflow optimization to harmonize your cyber defenses.">
-    <meta name="keywords" content="SOAR, cybersecurity, automation, consulting, security orchestration, incident response, threat detection">
-    <meta name="author" content="Concerto">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    
-    <!-- External CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    
-    <!-- Tailwind Config -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'concerto-blue': '#1E40AF',
-                        'concerto-purple': '#7C3AED',
                         'concerto-gold': '#F59E0B',
+                        'concerto-purple': '#8B5CF6',
+                        'concerto-dark': '#0F0F23',
+                        'concerto-darker': '#0A0A1A',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
                     },
                     animation: {
-                        'fadeInUp': 'fadeInUp 0.6s ease-out',
-                        'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-in-left': 'slideInLeft 0.6s ease-out',
+                        'slide-in-right': 'slideInRight 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
                         'float': 'float 3s ease-in-out infinite',
                     }
                 }
             }
         }
     </script>
-<script defer data-domain="www.concertocyber.com" src="https://analytics.tiiny.site/js/plausible.js"></script></head>
-<body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-    <!-- Header -->
-    <header class="border-b border-purple-800/30 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div>
-                        <span class="text-2xl font-bold text-white">Concerto</span>
-                        <div class="text-xs text-concerto-gold font-medium">Cyber Automation Consulting</div>
+    <style>
+        .btn-primary {
+            background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 50%, #F59E0B 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #7C3AED 0%, #9333EA 50%, #D97706 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+            border-color: rgba(139, 92, 246, 0.6);
+            transform: translateY(-1px);
+        }
+
+        .glass-card {
+            background: rgba(15, 15, 35, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card:hover {
+            background: rgba(15, 15, 35, 0.6);
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateY(-4px);
+            transition: all 0.3s ease;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 50%, #F59E0B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-gradient {
+            background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.15) 0%, rgba(15, 15, 35, 0.8) 70%);
+        }
+
+        .section-divider {
+            background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.5) 50%, transparent 100%);
+            height: 1px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(139, 92, 246, 0.6);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-musicNote {
+            animation: musicNote 4s ease-in-out infinite;
+        }
+        
+        @keyframes musicNote {
+            0%, 100% { 
+                opacity: 0; 
+                transform: translateY(0px) rotate(0deg); 
+            }
+            25% { 
+                opacity: 0.7; 
+                transform: translateY(-15px) rotate(5deg); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: translateY(-25px) rotate(-5deg); 
+            }
+            75% { 
+                opacity: 0.7; 
+                transform: translateY(-15px) rotate(3deg); 
+            }
+        }
+
+        .tech-grid {
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .number-badge {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(15, 15, 35, 0.8) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .expertise-badge {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.1) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 15, 35, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #8B5CF6, #F59E0B);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #7C3AED, #D97706);
+        }
+
+        /* Enhanced typography */
+        .heading-xl {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .heading-lg {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        .text-enhanced {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* Improved mobile responsiveness */
+        @media (max-width: 768px) {
+            .glass-card {
+                margin: 0.5rem;
+            }
+            .btn-primary, .btn-secondary {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-concerto-darker via-purple-950 to-concerto-darker text-white min-h-screen font-sans">
+    <!-- Enhanced Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-card border-b border-purple-800/30">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-concerto-purple to-concerto-gold flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">C</span>
                     </div>
+                    <span class="text-xl font-bold text-white">Concerto</span>
                 </div>
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#services" class="text-gray-300 hover:text-concerto-gold transition-colors">Services</a>
-                    <a href="#how-it-works" class="text-gray-300 hover:text-concerto-gold transition-colors">Process</a>
-                    <a href="#expertise" class="text-gray-300 hover:text-concerto-gold transition-colors">Expertise</a>
-                    <a href="#contact" class="text-gray-300 hover:text-concerto-gold transition-colors">Contact</a>
-                    <button class="btn-primary text-white px-6 py-2 rounded-lg font-semibold" onclick="sendEmail()">Free Consultation</button>
-                </nav>
-                <!-- Mobile menu button -->
-                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+                <span class="text-sm text-concerto-gold font-medium">Cyber Automation Consulting</span>
             </div>
-            <!-- Mobile menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <div class="flex flex-col space-y-4">
-                    <a href="#services" class="text-gray-300 hover:text-concerto-gold transition-colors">Services</a>
-                    <a href="#how-it-works" class="text-gray-300 hover:text-concerto-gold transition-colors">Process</a>
-                    <a href="#expertise" class="text-gray-300 hover:text-concerto-gold transition-colors">Expertise</a>
-                    <a href="#contact" class="text-gray-300 hover:text-concerto-gold transition-colors">Contact</a>
-                    <!-- <a href="#subscription-services" class="bg-gradient-to-r from-concerto-purple to-concerto-gold text-white px-4 py-2 rounded-lg font-semibold text-center">Keep SOAR in Tune With Subscription Services</a> -->
-                    <button class="btn-primary text-white px-6 py-2 rounded-lg font-semibold w-fit" onclick="sendEmail()">Free Consultation</button>
-                </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#services" class="text-gray-300 hover:text-concerto-gold transition-all duration-300 font-medium">Services</a>
+                <a href="#how-it-works" class="text-gray-300 hover:text-concerto-gold transition-all duration-300 font-medium">Process</a>
+                <a href="#expertise" class="text-gray-300 hover:text-concerto-gold transition-all duration-300 font-medium">Expertise</a>
+                <a href="#contact" class="text-gray-300 hover:text-concerto-gold transition-all duration-300 font-medium">Contact</a>
+                <button class="btn-primary text-white px-6 py-2 rounded-lg font-semibold" onclick="sendEmail()">POV Assessment</button>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Hero Section -->
-    <section class="py-20 px-4 animate-fadeInUp">
-        <div class="container mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                SOAR <span class="gradient-text">isn't</span> Low Code
-            </h1>
-            <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed text-left">
-                Is your expensive SOAR investment gathering dust?  You aren't the only ones.  Your team is overwhelmed.  The alerts keep coming.  The very tool you paid for to deal with it is nothing but a disappointment.
-            </p>
-            <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed text-left">
-                It isn't your fault.  The problem is you weren't told the truth.  SOAR's dirty little secret is that it isn't no or low-code &mdash; it's highly complex.  To make SOAR work for you, highly technical development and API expertise is required.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <button class="border-2 border-concerto-gold text-concerto-gold hover:bg-concerto-gold hover:text-white text-lg px-8 py-4 rounded-lg font-semibold transition-all duration-300" onclick="sendEmail()">
-                    Free Consultation
-                </button>
+    <!-- Enhanced Hero Section -->
+    <section class="pt-32 pb-24 px-6 text-center relative overflow-hidden">
+        <div class="hero-gradient absolute inset-0"></div>
+        <div class="tech-grid absolute inset-0 opacity-30"></div>
+        <div class="container mx-auto relative z-10">
+            <div class="animate-fade-in-up">
+                <h1 class="heading-xl mb-8">
+                    Your SOAR, <span class="gradient-text">delivered as promised.</span>
+                </h1>
+                <div class="max-w-5xl mx-auto mb-12 space-y-6">
+                    <p class="text-enhanced text-gray-300">
+                        Many organizations struggle to realize the full potential of their SOAR investments. Despite significant platform investments, teams often find themselves overwhelmed by alerts, manual processes, and complex integrations that don't deliver the promised automation benefits.
+                    </p>
+                    <p class="text-enhanced text-gray-300">
+                        The reality is that SOAR platforms require specialized technical expertise to reach their potential. While marketed as low-code solutions, successful SOAR implementations demand deep API knowledge, custom development skills, and strategic automation design to transform security operations effectively.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button class="btn-primary text-white px-10 py-4 rounded-xl font-semibold text-lg animate-pulse-glow" onclick="sendEmail()">
+                        Get Your POV Assessment
+                    </button>
+                    <button class="btn-secondary text-white px-8 py-4 rounded-xl font-medium" onclick="document.getElementById('pov-process').scrollIntoView({behavior: 'smooth'})">
+                        Learn About Our POV Process
+                    </button>
+                </div>
             </div>
         </div>
     </section>
-    <!-- Problem/Solution Section -->
-    <section class="py-20 px-4 bg-slate-800/50">
+
+    <!-- Enhanced Security Orchestration Challenge -->
+    <section class="py-24 px-6 relative">
+        <div class="section-divider mb-16"></div>
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">The Security Orchestration Challenge</h2>
-                <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto">
+            <div class="text-center mb-20 animate-fade-in">
+                <h2 class="heading-lg text-white mb-8">The Security Orchestration Challenge</h2>
+                <p class="text-enhanced text-gray-300 max-w-5xl mx-auto">
                     Modern organizations struggle with technical knowledge gaps, fragmented security tools, manual processes, and overwhelming alert fatigue. Without proper orchestration, your security team plays a discordant tune against sophisticated threats.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-                
-                <!-- Automation Knowledge -->
-                <div class="cost-calculator rounded-xl p-8">
-                    <h3 class="text-2xl font-bold text-concerto-gold mb-6 flex items-center">
-                        Automation Know-How
-                    </h3>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Automation Know-How -->
+                <div class="glass-card rounded-2xl p-8 animate-slide-in-left">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-concerto-gold to-yellow-500 flex items-center justify-center mr-4">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-concerto-gold">Automation Know-How</h3>
+                    </div>
                     <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-semibold text-white text-lg">Operationalize Human Experience</div>
-                                <div class="text-gray-300">Putting your team's knowledge and experience into repeatable playbooks</div>
-                            </div>
+                        <div class="border-l-4 border-concerto-gold pl-4">
+                            <h4 class="text-white font-semibold mb-2">Operationalize Human Experience</h4>
+                            <p class="text-gray-300 text-sm">Putting your team's knowledge and experience into repeatable playbooks</p>
                         </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-semibold text-white text-lg">Development Experience</div>
-                                <div class="text-gray-300">Teams lack proficient developers to build needed integrations and playbooks</div>
-                            </div>
+                        <div class="border-l-4 border-concerto-gold pl-4">
+                            <h4 class="text-white font-semibold mb-2">Development Experience</h4>
+                            <p class="text-gray-300 text-sm">Teams lack proficient developers to build needed integrations and playbooks</p>
                         </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-semibold text-white text-lg">Knowledge of APIs</div>
-                                <div class="text-gray-300">Create connections between disparate tools and products</div>
-                            </div>
+                        <div class="border-l-4 border-concerto-gold pl-4">
+                            <h4 class="text-white font-semibold mb-2">Knowledge of APIs</h4>
+                            <p class="text-gray-300 text-sm">Create connections between disparate tools and products</p>
                         </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-semibold text-white text-lg">Working With Data</div>
-                                <div class="text-gray-300">Transform data to keep it useful and consistent between workflows</div>
-                            </div>
+                        <div class="border-l-4 border-concerto-gold pl-4">
+                            <h4 class="text-white font-semibold mb-2">Working With Data</h4>
+                            <p class="text-gray-300 text-sm">Transform data to keep it useful and consistent between workflows</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Current Challenges -->
-                <div class="traditional-cost rounded-xl p-8">
-                    <h3 class="text-2xl font-bold text-red-400 mb-6 flex items-center">
-                        Security Chaos
-                    </h3>
+                <!-- Security Chaos -->
+                <div class="glass-card rounded-2xl p-8 animate-fade-in">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center mr-4">
+                            <span class="text-2xl">⚠️</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-red-400">Security Chaos</h3>
+                    </div>
                     <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-3 h-3 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-semibold text-white text-lg">Fragmented Tools</div>
-                                <div class="text-gray-300">Disconnected security solutions creating blind spots</div>
-                                <div class="text-red-400 text-sm mt-1">🔧 No unified visibility</div>
-                            </div>
+                        <div class="border-l-4 border-red-400 pl-4">
+                            <h4 class="text-white font-semibold mb-2">Fragmented Tools</h4>
+                            <p class="text-gray-300 text-sm mb-2">Disconnected security solutions creating blind spots</p>
+                            <p class="text-red-400 text-sm font-medium">🔧 No unified visibility</p>
                         </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="w-3 h-3 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-semibold text-white text-lg">Manual Processes</div>
-                                <div class="text-gray-300">Time-consuming manual incident response</div>
-                                <div class="text-red-400 text-sm mt-1">⏰ Slow threat response</div>
-                            </div>
+                        <div class="border-l-4 border-red-400 pl-4">
+                            <h4 class="text-white font-semibold mb-2">Manual Processes</h4>
+                            <p class="text-gray-300 text-sm mb-2">Time-consuming manual incident response</p>
+                            <p class="text-red-400 text-sm font-medium">⏰ Slow threat response</p>
                         </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="w-3 h-3 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-semibold text-white text-lg">Alert Fatigue</div>
-                                <div class="text-gray-300">Overwhelming false positives drowning real threats</div>
-                                <div class="text-red-400 text-sm mt-1">🔔 Critical alerts missed</div>
-                            </div>
+                        <div class="border-l-4 border-red-400 pl-4">
+                            <h4 class="text-white font-semibold mb-2">Alert Fatigue</h4>
+                            <p class="text-gray-300 text-sm mb-2">Overwhelming false positives drowning real threats</p>
+                            <p class="text-red-400 text-sm font-medium">🔔 Critical alerts missed</p>
                         </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="w-3 h-3 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-semibold text-white text-lg">Resource Strain</div>
-                                <div class="text-gray-300">Overworked security teams burning out</div>
-                                <div class="text-red-400 text-sm mt-1">👥 High turnover rates</div>
-                            </div>
+                        <div class="border-l-4 border-red-400 pl-4">
+                            <h4 class="text-white font-semibold mb-2">Resource Strain</h4>
+                            <p class="text-gray-300 text-sm mb-2">Overworked security teams burning out</p>
+                            <p class="text-red-400 text-sm font-medium">👥 High turnover rates</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Concerto Solution -->
-                <div class="cost-calculator rounded-xl p-8">
-                    <h3 class="text-2xl font-bold text-concerto-gold mb-6 flex items-center">
-                        Orchestrated Defense
-                    </h3>
+                <!-- Orchestrated Defense -->
+                <div class="glass-card rounded-2xl p-8 animate-slide-in-right">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mr-4">
+                            <span class="text-2xl">🛡️</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-green-400">Orchestrated Defense</h3>
+                    </div>
                     <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-semibold text-white text-lg">Unified Orchestration</div>
-                                <div class="text-gray-300">Seamless integration of all security tools</div>
-                                <div class="text-concerto-gold text-sm mt-1">🎯 Complete visibility</div>
-                            </div>
+                        <div class="border-l-4 border-green-400 pl-4">
+                            <h4 class="text-white font-semibold mb-2">Unified Orchestration</h4>
+                            <p class="text-gray-300 text-sm mb-2">Seamless integration of all security tools</p>
+                            <p class="text-green-400 text-sm font-medium">🎯 Complete visibility</p>
                         </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-semibold text-white text-lg">Automated Response</div>
-                                <div class="text-gray-300">Intelligent automation for rapid threat mitigation</div>
-                                <div class="text-concerto-gold text-sm mt-1">⚡ Instant threat response</div>
-                            </div>
+                        <div class="border-l-4 border-green-400 pl-4">
+                            <h4 class="text-white font-semibold mb-2">Automated Response</h4>
+                            <p class="text-gray-300 text-sm mb-2">Intelligent automation for rapid threat mitigation</p>
+                            <p class="text-green-400 text-sm font-medium">⚡ Instant threat response</p>
                         </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-semibold text-white text-lg">Smart Filtering</div>
-                                <div class="text-gray-300">AI-powered alert prioritization and correlation</div>
-                                <div class="text-concerto-gold text-sm mt-1">🧠 Focus on real threats</div>
-                            </div>
+                        <div class="border-l-4 border-green-400 pl-4">
+                            <h4 class="text-white font-semibold mb-2">Smart Filtering</h4>
+                            <p class="text-gray-300 text-sm mb-2">AI-powered alert prioritization and correlation</p>
+                            <p class="text-green-400 text-sm font-medium">🧠 Focus on real threats</p>
                         </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
-                            <div>
-                                <div class="font-semibold text-white text-lg">Team Empowerment</div>
-                                <div class="text-gray-300">Free your team to focus on strategic security</div>
-                                <div class="text-concerto-gold text-sm mt-1">🚀 Enhanced productivity</div>
-                            </div>
+                        <div class="border-l-4 border-green-400 pl-4">
+                            <h4 class="text-white font-semibold mb-2">Team Empowerment</h4>
+                            <p class="text-gray-300 text-sm mb-2">Your team to focus on strategic security</p>
+                            <p class="text-green-400 text-sm font-medium">🚀 Enhanced productivity</p>
                         </div>
                     </div>
                 </div>
@@ -229,389 +389,1033 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="py-20 px-4">
+    <!-- Enhanced Services Section -->
+    <section id="services" class="py-24 px-6 relative">
+        <div class="section-divider mb-16"></div>
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Our Cyber Automation Services</h2>
-                <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto">
+            <div class="text-center mb-20 animate-fade-in">
+                <h2 class="heading-lg text-white mb-8">Our Cyber Automation Services</h2>
+                <p class="text-enhanced text-gray-300 max-w-5xl mx-auto">
                     Transform your existing security investments into a unified, intelligent defense system
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-slate-800/50 border border-purple-800/30 rounded-xl p-8 hover:border-concerto-gold/50 transition-all duration-300 card-hover">
-                    <h3 class="text-xl font-bold text-white mb-4">Platform Assessment</h3>
-                    <p class="text-gray-300 mb-4">Comprehensive evaluation of your current security stack to identify optimization opportunities and integration points.</p>
-                    <ul class="text-sm text-gray-400 space-y-2">
-                        <li>• Security tool inventory and mapping</li>
-                        <li>• Integration capability analysis</li>
-                        <li>• ROI optimization recommendations</li>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Platform Assessment -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mr-4 group-hover:animate-float">
+                            <span class="text-2xl">📊</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Platform Assessment</h3>
+                    </div>
+                    <p class="text-gray-300 mb-6 text-enhanced">Comprehensive evaluation of your current security stack to identify optimization opportunities and integration points.</p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Security tool inventory and mapping</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Integration capability analysis</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>ROI optimization recommendations</span>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="bg-slate-800/50 border border-purple-800/30 rounded-xl p-8 hover:border-concerto-gold/50 transition-all duration-300 card-hover">
-                    <h3 class="text-xl font-bold text-white mb-4">SOAR Implementation</h3>
-                    <p class="text-gray-300 mb-4">Expert deployment and configuration of SOAR platforms tailored to your environment and existing tools.</p>
-                    <ul class="text-sm text-gray-400 space-y-2">
-                        <li>• Platform-specific expertise</li>
-                        <li>• Custom integration development</li>
-                        <li>• Workflow automation design</li>
+                <!-- SOAR Implementation -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mr-4 group-hover:animate-float">
+                            <span class="text-2xl">⚙️</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">SOAR Implementation</h3>
+                    </div>
+                    <p class="text-gray-300 mb-6 text-enhanced">Expert deployment and configuration of SOAR platforms tailored to your environment and existing tools.</p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Platform-specific expertise</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Custom integration development</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Workflow automation design</span>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="bg-slate-800/50 border border-purple-800/30 rounded-xl p-8 hover:border-concerto-gold/50 transition-all duration-300 card-hover">
-                    <h3 class="text-xl font-bold text-white mb-4">Playbook Implementation</h3>
-                    <p class="text-gray-300 mb-4">Rapid implementation of intelligent automation playbooks leveraging our extensive library and coding expertise.</p>
-                    <ul class="text-sm text-gray-400 space-y-2">
-                        <li>• Pre-built automation templates</li>
-                        <li>• Custom logic development</li>
-                        <li>• Accelerated deployment cycles</li>
+                <!-- Playbook Implementation -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mr-4 group-hover:animate-float">
+                            <span class="text-2xl">📋</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Playbook Implementation</h3>
+                    </div>
+                    <p class="text-gray-300 mb-6 text-enhanced">Rapid implementation of intelligent automation playbooks leveraging our extensive library and coding expertise.</p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Pre-built automation templates</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Custom logic development</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Accelerated deployment cycles</span>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="bg-slate-800/50 border border-purple-800/30 rounded-xl p-8 hover:border-concerto-gold/50 transition-all duration-300 card-hover">
-                    <h3 class="text-xl font-bold text-white mb-4">Tool Integration</h3>
-                    <p class="text-gray-300 mb-4">Seamless connection of your existing security tools into a unified orchestration platform.</p>
-                    <ul class="text-sm text-gray-400 space-y-2">
-                        <li>• API integration development</li>
-                        <li>• Data normalization and correlation</li>
-                        <li>• Bi-directional communication setup</li>
+                <!-- Tool Integration -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center mr-4 group-hover:animate-float">
+                            <span class="text-2xl">🔗</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Tool Integration</h3>
+                    </div>
+                    <p class="text-gray-300 mb-6 text-enhanced">Seamless connection of your existing security tools into a unified orchestration platform.</p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>API integration development</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Data normalization and correlation</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Bi-directional communication setup</span>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="bg-slate-800/50 border border-purple-800/30 rounded-xl p-8 hover:border-concerto-gold/50 transition-all duration-300 card-hover">
-                    <h3 class="text-xl font-bold text-white mb-4">Optimization & Tuning</h3>
-                    <p class="text-gray-300 mb-4">Continuous improvement of your SOAR platform performance and automation effectiveness.</p>
-                    <ul class="text-sm text-gray-400 space-y-2">
-                        <li>• Performance monitoring and analysis</li>
-                        <li>• False positive reduction</li>
-                        <li>• Workflow efficiency improvements</li>
+                <!-- Optimization & Tuning -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 flex items-center justify-center mr-4 group-hover:animate-float">
+                            <span class="text-2xl">🎛️</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Optimization & Tuning</h3>
+                    </div>
+                    <p class="text-gray-300 mb-6 text-enhanced">Continuous improvement of your SOAR platform performance and automation effectiveness.</p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Performance monitoring and analysis</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>False positive reduction</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Workflow efficiency improvements</span>
+                        </li>
                     </ul>
                 </div>
-                
-                <div class="bg-slate-800/50 border border-purple-800/30 rounded-xl p-8 hover:border-concerto-gold/50 transition-all duration-300 card-hover">
-                    <h3 class="text-xl font-bold text-white mb-4">Tool Development</h3>
-                    <p class="text-gray-300 mb-4">Build custom tools and web apps to support your team's particular needs</p>
-                    <ul class="text-sm text-gray-400 space-y-2">
-                        <li>• Full stack front and back ends</li>
-                        <li>• Integrate with existing automation platforms</li>
-                        <li>• Scratch the troublesome itches that SOAR can't solve</li>
+
+                <!-- Tool Development -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 flex items-center justify-center mr-4 group-hover:animate-float">
+                            <span class="text-2xl">🛠️</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Tool Development</h3>
+                    </div>
+                    <p class="text-gray-300 mb-6 text-enhanced">Build custom tools and web apps to support your team's particular needs</p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Full stack front and back ends</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Integrate with existing automation platforms</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Address specific operational challenges that standard SOAR platforms cannot resolve</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- NEW: Threat Intelligence Integration -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-red-500 to-pink-600 flex items-center justify-center mr-4 group-hover:animate-float">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Threat Intelligence Integration</h3>
+                    </div>
+                    <p class="text-gray-300 mb-6 text-enhanced">Seamless integration with leading threat intelligence feeds and IOC management</p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Multi-source threat feed integration</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>IOC enrichment and correlation</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Automated threat hunting workflows</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- NEW: Compliance Automation -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 flex items-center justify-center mr-4 group-hover:animate-float">
+                            <span class="text-2xl">📜</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Compliance Automation</h3>
+                    </div>
+                    <p class="text-gray-300 mb-6 text-enhanced">Automated compliance reporting for SOC 2, PCI DSS, and industry frameworks</p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Automated evidence collection</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Real-time compliance monitoring</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Audit-ready reporting dashboards</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- NEW: Performance Metrics -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center mr-4 group-hover:animate-float">
+                            <span class="text-2xl">📈</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Performance Metrics</h3>
+                    </div>
+                    <p class="text-gray-300 mb-6 text-enhanced">Detailed analytics and KPI tracking for security operations effectiveness</p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>MTTR and MTTD tracking</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Automation efficiency metrics</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="text-concerto-gold text-lg">•</span>
+                            <span>Executive-level security dashboards</span>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 px-4">
+    <!-- Enhanced Automation Symphony -->
+    <section class="py-24 px-6 relative">
+        <div class="section-divider mb-16"></div>
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Our Automation Symphony</h2>
-                <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto">
+            <div class="text-center mb-20 animate-fade-in">
+                <h2 class="heading-lg text-white mb-8">Our Automation Symphony</h2>
+                <p class="text-enhanced text-gray-300 max-w-5xl mx-auto">
                     Like orchestral conductors, we orchestrate your processes into a defense symphony
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-slate-800/50 border border-purple-800/30 hover:border-concerto-gold/50 transition-all duration-300 rounded-xl p-6 card-hover">
-                    <h3 class="text-xl font-bold text-white mb-3">Composition</h3>
-                    <p class="text-gray-300 leading-relaxed">Strategic security architecture design and SOAR platform selection tailored to your unique threat landscape</p>
-                    <div class="mt-4 text-sm text-concerto-gold">✓ Custom security strategy</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                <div class="text-center glass-card rounded-2xl p-8 group">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-concerto-gold to-yellow-500 flex items-center justify-center mx-auto mb-6 group-hover:animate-float">
+                        <span class="text-3xl">🎼</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Composition</h3>
+                    <p class="text-gray-300 mb-4 text-enhanced">Strategic security architecture design and SOAR platform selection tailored to your unique threat landscape</p>
+                    <p class="text-concerto-gold font-semibold">✓ Custom security strategy</p>
                 </div>
-
-                <div class="bg-slate-800/50 border border-purple-800/30 hover:border-concerto-gold/50 transition-all duration-300 rounded-xl p-6 card-hover">
-                    <h3 class="text-xl font-bold text-white mb-3">Orchestration</h3>
-                    <p class="text-gray-300 leading-relaxed">SOAR implementation and security tool integration to create seamless automated workflows</p>
-                    <div class="mt-4 text-sm text-purple-400">✓ Automated workflows</div>
+                <div class="text-center glass-card rounded-2xl p-8 group">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mx-auto mb-6 group-hover:animate-float">
+                        <span class="text-3xl">🎭</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Orchestration</h3>
+                    <p class="text-gray-300 mb-4 text-enhanced">SOAR implementation and security tool integration to create seamless automated workflows</p>
+                    <p class="text-concerto-gold font-semibold">✓ Automated workflows</p>
                 </div>
-
-                <div class="bg-slate-800/50 border border-purple-800/30 hover:border-concerto-gold/50 transition-all duration-300 rounded-xl p-6 card-hover">
-                    <h3 class="text-xl font-bold text-white mb-3">Performance</h3>
-                    <p class="text-gray-300 leading-relaxed">Ongoing optimization and fine-tuning of your security automation to maintain peak performance</p>
-                    <div class="mt-4 text-sm text-green-400">✓ Continuous improvement</div>
+                <div class="text-center glass-card rounded-2xl p-8 group">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mx-auto mb-6 group-hover:animate-float">
+                        <span class="text-3xl">🎵</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Performance</h3>
+                    <p class="text-gray-300 mb-4 text-enhanced">Ongoing optimization and fine-tuning of your security automation to maintain peak performance</p>
+                    <p class="text-concerto-gold font-semibold">✓ Continuous improvement</p>
                 </div>
-
-                <div class="bg-slate-800/50 border border-purple-800/30 hover:border-concerto-gold/50 transition-all duration-300 rounded-xl p-6 card-hover">
-                    <h3 class="text-xl font-bold text-white mb-3">Conducting</h3>
-                    <p class="text-gray-300 leading-relaxed">Expert guidance and 24/7 support to ensure your security orchestra performs flawlessly</p>
-                    <div class="mt-4 text-sm text-blue-400">✓ Expert support</div>
+                <div class="text-center glass-card rounded-2xl p-8 group">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mx-auto mb-6 group-hover:animate-float">
+                        <span class="text-3xl">🎤</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Conducting</h3>
+                    <p class="text-gray-300 mb-4 text-enhanced">Expert guidance and 24/7 support to ensure your security orchestra performs flawlessly</p>
+                    <p class="text-concerto-gold font-semibold">✓ Expert support</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="py-20 px-4 bg-slate-800/50">
+    <!-- Enhanced Process Section -->
+    <section id="how-it-works" class="py-24 px-6 relative">
+        <div class="section-divider mb-16"></div>
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Our Orchestration Process</h2>
-                <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto">
+            <div class="text-center mb-20 animate-fade-in">
+                <h2 class="heading-lg text-white mb-8">Our Orchestration Process</h2>
+                <p class="text-enhanced text-gray-300 max-w-5xl mx-auto">
                     From assessment to optimization, we guide you through every movement of your security transformation
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center step-indicator">
-                    <div class="w-16 h-16 bg-concerto-gold rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4 animate-float">1</div>
-                    <h3 class="text-xl font-bold text-white mb-3">Assessment</h3>
-                    <p class="text-gray-300">Comprehensive analysis of your current security landscape and tool inventory</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                <div class="text-center group">
+                    <div class="number-badge text-concerto-darker w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-bold mx-auto mb-6 group-hover:animate-float">1</div>
+                    <h3 class="text-xl font-bold text-white mb-4">Assessment</h3>
+                    <p class="text-gray-300 text-enhanced">Comprehensive analysis of your current security landscape and tool inventory</p>
                 </div>
-
-                <div class="text-center step-indicator">
-                    <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4 animate-float" style="animation-delay: 0.5s">2</div>
-                    <h3 class="text-xl font-bold text-white mb-3">Design</h3>
-                    <p class="text-gray-300">Creating your custom automation symphony with optimal tool integration</p>
+                <div class="text-center group">
+                    <div class="number-badge text-concerto-darker w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-bold mx-auto mb-6 group-hover:animate-float">2</div>
+                    <h3 class="text-xl font-bold text-white mb-4">Design</h3>
+                    <p class="text-gray-300 text-enhanced">Creating your custom automation symphony with optimal tool integration</p>
                 </div>
-
-                <div class="text-center step-indicator">
-                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4 animate-float" style="animation-delay: 1s">3</div>
-                    <h3 class="text-xl font-bold text-white mb-3">Implementation</h3>
-                    <p class="text-gray-300">Deploying orchestrated solutions with minimal disruption to operations</p>
+                <div class="text-center group">
+                    <div class="number-badge text-concerto-darker w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-bold mx-auto mb-6 group-hover:animate-float">3</div>
+                    <h3 class="text-xl font-bold text-white mb-4">Implementation</h3>
+                    <p class="text-gray-300 text-enhanced">Deploying orchestrated solutions with minimal disruption to operations</p>
                 </div>
-
-                <div class="text-center step-indicator">
-                    <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4 animate-float" style="animation-delay: 1.5s">4</div>
-                    <h3 class="text-xl font-bold text-white mb-3">Optimization</h3>
-                    <p class="text-gray-300">Continuous fine-tuning and performance enhancement for peak efficiency</p>
+                <div class="text-center group">
+                    <div class="number-badge text-concerto-darker w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-bold mx-auto mb-6 group-hover:animate-float">4</div>
+                    <h3 class="text-xl font-bold text-white mb-4">Optimization</h3>
+                    <p class="text-gray-300 text-enhanced">Continuous fine-tuning and performance enhancement for peak efficiency</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Expertise Section -->
-    <section id="expertise" class="py-20 px-4">
+    <!-- Enhanced Expertise Section -->
+    <section id="expertise" class="py-24 px-6 relative">
+        <div class="section-divider mb-16"></div>
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Our Expertise</h2>
-                <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto">
-                    Deep knowledge across all major SOAR platforms and security technologies. <span class="text-concerto-gold font-semibold">Click on any platform or technology below</span> to learn about our specific experience and how we can help optimize your security operations.
+            <div class="text-center mb-20 animate-fade-in">
+                <h2 class="heading-lg text-white mb-8">Our Expertise</h2>
+                <p class="text-enhanced text-gray-300 max-w-5xl mx-auto">
+                    Deep knowledge across all major SOAR platforms and security technologies. Click on any platform or technology below to learn about our specific experience and how we can help optimize your security operations.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-slate-800/50 border border-purple-800/30 rounded-xl p-6">
-                    <h3 class="text-xl font-bold text-concerto-gold mb-4">SOAR / Automation Platforms</h3>
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> Palo Alto Networks XSOAR</li>
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> Palo Alto Networks XSIAM</li>
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> n8n</li>
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> Activepieces</li>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
+                <!-- SOAR Platforms -->
+                <div class="glass-card rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-concerto-gold to-yellow-500 flex items-center justify-center mr-4">
+                            <span class="text-2xl">🚀</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-concerto-gold">SOAR / Automation Platforms</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Palo Alto Networks XSOAR</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Palo Alto Networks XSIAM</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Splunk SOAR (Phantom)</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>IBM Security SOAR</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Microsoft Sentinel</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Rapid7 InsightConnect</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>ServiceNow Security Operations</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Swimlane Turbine</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>ThreatConnect</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Siemplify (Google Cloud)</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>n8n</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Activepieces</span>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="bg-slate-800/50 border border-purple-800/30 rounded-xl p-6">
-                    <h3 class="text-xl font-bold text-purple-400 mb-4">Security Integration</h3>
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> Next Gen SIEM (XSIAM)</li>
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> SIEM Integration</li>
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> Threat Intelligence</li>
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> Endpoint Detection</li>
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> Network Security</li>
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> Cloud Security</li>
+                <!-- Security Integration -->
+                <div class="glass-card rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mr-4">
+                            <span class="text-2xl">🔐</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-300">Security Integration</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Next Gen SIEM (XSIAM)</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>SIEM Integration</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Threat Intelligence</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Endpoint Detection</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Network Security</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Cloud Security</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>API Development</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span class="text-sm">Native cloud platform integrations (AWS Security Hub, Azure Sentinel, GCP Security Command Center)</span>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="bg-slate-800/50 border border-purple-800/30 rounded-xl p-6">
-                    <h3 class="text-xl font-bold text-blue-400 mb-4">Automation Areas</h3>
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> Incident Response</li>
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> Threat Hunting</li>
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> Vulnerability Management</li>
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> Compliance Reporting</li>
-                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span> User Behavior Analytics</li>
+                <!-- Automation Areas -->
+                <div class="glass-card rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mr-4">
+                            <span class="text-2xl">⚡</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-400">Automation Areas</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Incident Response</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Threat Hunting</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Vulnerability Management</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>Compliance Reporting</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="expertise-badge rounded-full px-2 py-1">
+                                <span class="text-green-400 text-sm">✓</span>
+                            </span>
+                            <span>User Behavior Analytics</span>
+                        </li>
                     </ul>
+                </div>
+            </div>
+
+            <!-- Enhanced Credibility Elements Section -->
+            <div class="glass-card rounded-2xl p-12 max-w-6xl mx-auto">
+                <h3 class="text-3xl font-bold text-white mb-12 text-center gradient-text">Our Credentials & Track Record</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center group">
+                        <div class="w-20 h-20 rounded-2xl bg-gradient-to-r from-concerto-gold to-yellow-500 flex items-center justify-center mx-auto mb-6 group-hover:animate-float">
+                            <span class="text-4xl">🏆</span>
+                        </div>
+                        <h4 class="text-white font-semibold mb-4 text-xl">Experience</h4>
+                        <p class="text-gray-300 text-enhanced">Years of hands-on development and SOAR implementation experience across enterprise environments</p>
+                    </div>
+                    <div class="text-center group">
+                        <div class="w-20 h-20 rounded-2xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mx-auto mb-6 group-hover:animate-float">
+                            <span class="text-4xl">📊</span>
+                        </div>
+                        <h4 class="text-white font-semibold mb-4 text-xl">Success Metrics</h4>
+                        <p class="text-gray-300 text-enhanced">Average 75% reduction in incident response time for enterprise clients</p>
+                    </div>
+                    <div class="text-center group">
+                        <div class="w-20 h-20 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mx-auto mb-6 group-hover:animate-float">
+                            <span class="text-4xl">🏢</span>
+                        </div>
+                        <h4 class="text-white font-semibold mb-4 text-xl">Industry Experience</h4>
+                        <p class="text-gray-300 text-enhanced">Proven success across financial services, healthcare, and government sectors</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Subscription Services Section -->
-    <section id="subscription-services" class="py-20 px-4 bg-slate-800/50">
+    <!-- NEW: POV Process Section -->
+    <section id="pov-process" class="py-24 px-6 relative">
+        <div class="section-divider mb-16"></div>
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-                    <span class="gradient-text">Keep SOAR in Tune</span> With Subscription Services
+            <div class="text-center mb-20 animate-fade-in">
+                <h2 class="heading-lg text-white mb-8">Proof of Value (POV) Assessment</h2>
+                <p class="text-enhanced text-gray-300 max-w-5xl mx-auto">
+                    Experience our expertise firsthand with a comprehensive POV assessment. We identify critical automation opportunities, implement a working solution, and prove measurable outcomes. This approach demonstrates our value while strengthening our partnership with your team.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto mb-16">
+                <!-- Left Column - Our POV Approach -->
+                <div class="glass-card rounded-2xl p-10">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-concerto-gold to-yellow-500 flex items-center justify-center mr-4">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Our POV Approach</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
+                            <div>
+                                <div class="text-white font-semibold mb-2">Identify High-Impact Opportunities</div>
+                                <div class="text-gray-300">We analyze your environment to find automation opportunities with immediate, measurable impact</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
+                            <div>
+                                <div class="text-white font-semibold mb-2">Implement Working Solutions</div>
+                                <div class="text-gray-300">We build and deploy actual automation solutions in your environment, not just recommendations</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
+                            <div>
+                                <div class="text-white font-semibold mb-2">Prove Measurable Outcomes</div>
+                                <div class="text-gray-300">We demonstrate concrete results: reduced response times, fewer false positives, improved efficiency</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
+                            <div>
+                                <div class="text-white font-semibold mb-2">Build Strategic Partnership</div>
+                                <div class="text-gray-300">Experience our collaborative approach and technical expertise before making any commitments</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-concerto-gold rounded-full mt-2 flex-shrink-0"></div>
+                            <div>
+                                <div class="text-white font-semibold mb-2">No Obligation Decision Point</div>
+                                <div class="text-gray-300">After seeing real results, you decide if you want to expand our partnership</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - What You Get -->
+                <div class="glass-card rounded-2xl p-10">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mr-4">
+                            <span class="text-2xl">🚀</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">What You Get</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div>
+                                <div class="text-white font-semibold mb-2">Working Automation Solution</div>
+                                <div class="text-gray-300">A fully functional playbook or integration deployed in your environment</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div>
+                                <div class="text-white font-semibold mb-2">Performance Metrics Report</div>
+                                <div class="text-gray-300">Detailed before/after analysis showing measurable improvements</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div>
+                                <div class="text-white font-semibold mb-2">Strategic Roadmap</div>
+                                <div class="text-gray-300">Comprehensive plan for expanding automation across your security operations</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div>
+                                <div class="text-white font-semibold mb-2">Knowledge Transfer</div>
+                                <div class="text-gray-300">Training for your team on the implemented solution and best practices</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div>
+                                <div class="text-white font-semibold mb-2">Partnership Proposal</div>
+                                <div class="text-gray-300">If results meet expectations, detailed proposal for ongoing collaboration</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POV Process Steps -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-bold text-white mb-12 text-center">POV Process Timeline</h3>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-6 max-w-7xl mx-auto">
+                    <div class="text-center group">
+                        <div class="number-badge text-concerto-darker w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6 group-hover:animate-float">1</div>
+                        <h4 class="text-white font-semibold mb-3 text-lg">Discovery Call</h4>
+                        <p class="text-gray-400 text-sm">45-min assessment to identify POV opportunity</p>
+                        <p class="text-concerto-gold text-xs mt-2">Week 1</p>
+                    </div>
+                    <div class="text-center group">
+                        <div class="number-badge text-concerto-darker w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6 group-hover:animate-float">2</div>
+                        <h4 class="text-white font-semibold mb-3 text-lg">Environment Access</h4>
+                        <p class="text-gray-400 text-sm">Secure access setup and baseline measurements</p>
+                        <p class="text-concerto-gold text-xs mt-2">Week 1-2</p>
+                    </div>
+                    <div class="text-center group">
+                        <div class="number-badge text-concerto-darker w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6 group-hover:animate-float">3</div>
+                        <h4 class="text-white font-semibold mb-3 text-lg">Solution Development</h4>
+                        <p class="text-gray-400 text-sm">Build and test automation solution</p>
+                        <p class="text-concerto-gold text-xs mt-2">Week 2-3</p>
+                    </div>
+                    <div class="text-center group">
+                        <div class="number-badge text-concerto-darker w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6 group-hover:animate-float">4</div>
+                        <h4 class="text-white font-semibold mb-3 text-lg">Deployment & Testing</h4>
+                        <p class="text-gray-400 text-sm">Live deployment with monitoring and optimization</p>
+                        <p class="text-concerto-gold text-xs mt-2">Week 3-4</p>
+                    </div>
+                    <div class="text-center group">
+                        <div class="number-badge text-concerto-darker w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6 group-hover:animate-float">5</div>
+                        <h4 class="text-white font-semibold mb-3 text-lg">Results Review</h4>
+                        <p class="text-gray-400 text-sm">Performance analysis and partnership discussion</p>
+                        <p class="text-concerto-gold text-xs mt-2">Week 4</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POV Success Examples -->
+            <div class="glass-card rounded-2xl p-10 max-w-6xl mx-auto mb-16">
+                <h3 class="text-3xl font-bold text-white mb-8 text-center">Recent POV Success Stories</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl">🏥</span>
+                        </div>
+                        <h4 class="text-white font-semibold mb-3">Healthcare System</h4>
+                        <p class="text-gray-300 text-sm mb-2">Automated phishing response playbook</p>
+                        <p class="text-green-400 font-bold">85% faster incident response</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl">🏦</span>
+                        </div>
+                        <h4 class="text-white font-semibold mb-3">Financial Services</h4>
+                        <p class="text-gray-300 text-sm mb-2">Threat intelligence enrichment automation</p>
+                        <p class="text-green-400 font-bold">70% reduction in false positives</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl">🏛️</span>
+                        </div>
+                        <h4 class="text-white font-semibold mb-3">Government Agency</h4>
+                        <p class="text-gray-300 text-sm mb-2">Vulnerability management workflow</p>
+                        <p class="text-green-400 font-bold">60% faster patch deployment</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POV Requirements -->
+            <div class="glass-card rounded-2xl p-10 max-w-5xl mx-auto mb-16">
+                <h3 class="text-3xl font-bold text-white mb-8 text-center">POV Requirements</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-semibold text-concerto-gold mb-4">What We Need From You</h4>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-concerto-gold text-xl">✓</span>
+                            <span class="text-gray-300">Dedicated technical contact</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-concerto-gold text-xl">✓</span>
+                            <span class="text-gray-300">Secure access to target environment</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-concerto-gold text-xl">✓</span>
+                            <span class="text-gray-300">Baseline metrics for comparison</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-semibold text-purple-400 mb-4">What We Provide</h4>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-purple-400 text-xl">✓</span>
+                            <span class="text-gray-300">Certified SOAR architects</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-purple-400 text-xl">✓</span>
+                            <span class="text-gray-300">All development and implementation</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-purple-400 text-xl">✓</span>
+                            <span class="text-gray-300">Complete documentation and training</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center">
+                <p class="text-xl text-gray-300 mb-8 font-semibold">Ready to see what SOAR automation can do for your organization?</p>
+                <button class="btn-primary text-white px-12 py-5 rounded-xl font-semibold text-xl animate-pulse-glow" onclick="sendEmail()">
+                    Request Your POV Assessment
+                </button>
+                <p class="text-gray-400 mt-4 text-sm">No sales pressure. No lengthy presentations. Just proven results.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Subscription Services -->
+    <section class="py-24 px-6 relative">
+        <div class="section-divider mb-16"></div>
+        <div class="container mx-auto">
+            <div class="text-center mb-20 animate-fade-in">
+                <h2 class="heading-lg text-white mb-8">
+                    <span class="text-purple-400">Keep SOAR</span> 
+                    <span class="text-concerto-gold">in Tune</span> 
+                    <span class="text-white">With Subscription Services</span>
                 </h2>
-                <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                <p class="text-enhanced text-gray-300 max-w-5xl mx-auto">
                     Deepen your security orchestration with monthly engagement. Our subscription services ensure your SOAR platform is the force multiplier it was meant to be while building lasting partnerships.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto mb-16">
                 <!-- Enterprise Partnership Model -->
-                <div class="bg-slate-800/50 border border-purple-800/30 rounded-xl p-8 relative hover:border-purple-400/50 transition-all duration-300 card-hover">
-
-                    <div class="text-center mb-6">
-                        <div class="text-3xl font-bold text-purple-400 mb-2">Enterprise Partnership Model</div>
+                <div class="glass-card rounded-2xl p-10">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mr-4">
+                            <span class="text-2xl">🤝</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-400">Enterprise Partnership Model</h3>
                     </div>
-
-                    <div class="flex flex-col space-y-4 mb-8 items-center">
-                        <div class="flex flex-col">
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-gray-300 text-sm">Monthly consultation with your security team.  We work to ensure their problems are always being solved.</div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-gray-300 text-sm">Regular playbook assessments.  Always be adopting the right playbooks and processes to meet your needs</div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-gray-300 text-sm">Meaningfully reduce alert count.</div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-gray-300 text-sm">Build team buy-in and adoption of automation technology.</div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-gray-300 text-sm">Knowledge transfer.  We explain what we're doing and how.</div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-gray-300 text-sm">Highly skilled security automation architect.  We use only the best architects, not the cheapest.</div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-gray-300 text-sm">Quarterly executive reports</div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-gray-300 text-sm">Add missing functionality or fixes to existing integrations.</div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-gray-300 text-sm">Discounts on custom integration development.</div>
-                            </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="text-gray-300">Monthly consultation with your security team. We work to ensure their problems are always being solved.</div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="text-gray-300">Regular playbook assessments. Always be adopting the right playbooks and processes to meet your needs</div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="text-gray-300">Significantly reduce alert count through intelligent filtering and correlation.</div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="text-gray-300">Build team buy-in and adoption of automation technology.</div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="text-gray-300">Knowledge transfer. We explain what we're doing and how.</div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="text-gray-300">Certified SOAR architects with extensive enterprise experience and proven track records.</div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="text-gray-300">Quarterly executive reports</div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="text-gray-300">Add missing functionality or fixes to existing integrations.</div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="text-gray-300">Discounts on custom integration development.</div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Traditional Model -->
-                <div class="bg-slate-800/50 border border-purple-800/30 rounded-xl p-8 relative hover:border-purple-400/50 transition-all duration-300 card-hover">
-
-                    <div class="text-center mb-6">
-                        <div class="text-3xl font-bold text-purple-400 mb-2">Traditional Model</div>
+                <div class="glass-card rounded-2xl p-10">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-gray-500 to-gray-600 flex items-center justify-center mr-4">
+                            <span class="text-2xl">📋</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-300">Traditional Model</h3>
                     </div>
-
-                    <div class="flex flex-col space-y-4 mb-8 items-center">
-                        <div class="flex flex-col">
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-gray-300 text-sm">Engagement for projects tailored to your specific objectives.</div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-gray-300 text-sm">Either time & materials or deliverable-based billing.</div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <div class="text-gray-300 text-sm">Highly skilled security automation architect.  We use only the best architects, not the cheapest.</div>
-                            </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-gray-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="text-gray-300">Engagement for projects tailored to your specific objectives.</div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-gray-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="text-gray-300">Either time & materials or deliverable-based billing.</div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-3 h-3 bg-gray-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="text-gray-300">Certified SOAR architects with extensive enterprise experience and proven track records.</div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
-            <!-- Additional Benefits Section -->
-            <div class="mt-16 text-center">
-                <h3 class="text-2xl font-bold text-white mb-8">Why Choose Subscription Services?</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    <div class="bg-slate-800/30 border border-purple-800/20 rounded-lg p-6">
-                        <div class="text-3xl mb-4">🤝</div>
-                        <h4 class="text-lg font-semibold text-white mb-2">Deeper Partnerships</h4>
-                        <p class="text-gray-400 text-sm">Build lasting relationships with ongoing collaboration and strategic guidance for your security operations.</p>
+            <div class="text-center">
+                <h3 class="text-3xl font-bold text-white mb-12">Why Choose Subscription Services?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="glass-card rounded-2xl p-8 group">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mx-auto mb-6 group-hover:animate-float">
+                            <span class="text-3xl">🤝</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-white mb-4">Deeper Partnerships</h4>
+                        <p class="text-gray-400">Build lasting relationships with ongoing collaboration and strategic guidance for your security operations.</p>
                     </div>
-                    <div class="bg-slate-800/30 border border-purple-800/20 rounded-lg p-6">
-                        <div class="text-3xl mb-4">🤝</div>
-                        <h4 class="text-lg font-semibold text-white mb-2">Cost Savings</h4>
-                        <p class="text-gray-400 text-sm">Save on hiring dedicated automation personnel.</p>
+                    <div class="glass-card rounded-2xl p-8 group">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mx-auto mb-6 group-hover:animate-float">
+                            <span class="text-3xl">💰</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-white mb-4">Cost Savings</h4>
+                        <p class="text-gray-400">Save on hiring dedicated automation personnel.</p>
                     </div>
-                    <div class="bg-slate-800/30 border border-purple-800/20 rounded-lg p-6">
-                        <div class="text-3xl mb-4">📈</div>
-                        <h4 class="text-lg font-semibold text-white mb-2">Continuous Value</h4>
-                        <p class="text-gray-400 text-sm">Regular engagement ensures your SOAR investment is solving your team's problems.</p>
-                    </div>
-                </div>
-            </div>
-    </section>
-
-
-
-    <section id="contact" class="py-20 px-4 bg-slate-800/50">
-        <!-- CTA Section -->
-            <div class="mt-16 text-center">
-                <div class="bg-gradient-to-r from-purple-900/50 to-slate-900/50 border border-concerto-gold/30 rounded-xl p-8 max-w-4xl mx-auto">
-                    <h3 class="text-2xl font-bold text-white mb-4">Ready to Elevate Your Security Orchestra?</h3>
-                    <p class="text-gray-300 mb-6">Let's discuss which subscription plan aligns with your organization's needs and security objectives.</p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button class="btn-primary text-white px-8 py-3 rounded-lg font-semibold" onclick="sendEmail()">
-                            Request Consultation / Information
-                        </button>
+                    <div class="glass-card rounded-2xl p-8 group">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mx-auto mb-6 group-hover:animate-float">
+                            <span class="text-3xl">📈</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-white mb-4">Continuous Value</h4>
+                        <p class="text-gray-400">Regular engagement ensures your SOAR investment is solving your team's problems.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-purple-800/30 bg-slate-900/80 py-12 px-4">
+    <!-- Enhanced Contact Section -->
+    <section id="contact" class="py-24 px-6 relative">
+        <div class="section-divider mb-16"></div>
+        <div class="container mx-auto text-center">
+            <div class="glass-card rounded-2xl p-12 max-w-5xl mx-auto">
+                <h3 class="text-4xl font-bold text-white mb-6">Ready to Elevate Your Security Orchestra?</h3>
+                <p class="text-enhanced text-gray-300 mb-10">Start with our POV assessment to experience our expertise firsthand, or discuss which subscription plan aligns with your organization's needs and security objectives.</p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <button class="btn-primary text-white px-10 py-4 rounded-xl font-semibold text-lg" onclick="sendEmail()">Request POV Assessment</button>
+                    <button class="btn-secondary text-white px-8 py-4 rounded-xl font-medium" onclick="document.getElementById('pov-process').scrollIntoView({behavior: 'smooth'})">Learn About Our POV Process</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer class="border-t border-purple-800/30 bg-concerto-darker/80 py-16 px-6">
         <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <span class="text-xl font-bold text-white">Concerto</span>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-concerto-purple to-concerto-gold flex items-center justify-center">
+                            <span class="text-white font-bold">C</span>
+                        </div>
+                        <span class="text-2xl font-bold text-white">Concerto</span>
                     </div>
-                    <p class="text-gray-400 mb-4">Conducting your Cyber Automation symphony</p>
-                    <p class="text-gray-400 text-sm">Expert cyber automation consulting services that orchestrate seamless security and general workflows.</p>
+                    <p class="text-gray-400 mb-6 text-enhanced">Conducting your Cyber Automation symphony</p>
+                    <p class="text-gray-400">Expert cyber automation consulting services that orchestrate seamless security and general workflows.</p>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold mb-4">SOAR / Automation Platforms</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li>Palo Alto Networks XSOAR</li>
-                        <li>Palo Alto Networks XSIAM</li>
-                        <li>n8n</li>
-                        <li>Activepieces</li>
+                    <h4 class="text-white font-semibold mb-6 text-lg">Major SOAR Platforms</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="hover:text-concerto-gold transition-colors">Palo Alto Networks XSOAR</li>
+                        <li class="hover:text-concerto-gold transition-colors">Palo Alto Networks XSIAM</li>
+                        <li class="hover:text-concerto-gold transition-colors">Splunk SOAR (Phantom)</li>
+                        <li class="hover:text-concerto-gold transition-colors">IBM Security SOAR</li>
+                        <li class="hover:text-concerto-gold transition-colors">Microsoft Sentinel</li>
+                        <li class="hover:text-concerto-gold transition-colors">Rapid7 InsightConnect</li>
+                        <li class="hover:text-concerto-gold transition-colors">ServiceNow Security Operations</li>
+                        <li class="hover:text-concerto-gold transition-colors">Swimlane Turbine</li>
+                        <li class="hover:text-concerto-gold transition-colors">ThreatConnect</li>
+                        <li class="hover:text-concerto-gold transition-colors">Siemplify (Google Cloud)</li>
+                        <div class="border-t border-gray-600 my-4"></div>
+                        <li class="text-gray-500 text-sm">Other Automation Platforms:</li>
+                        <li class="hover:text-concerto-gold transition-colors text-sm">n8n</li>
+                        <li class="hover:text-concerto-gold transition-colors text-sm">Activepieces</li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Security Tools</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li>Next Gen SIEM (XSIAM)</li>
-                        <li>SIEM Integration</li>
-                        <li>Threat Intelligence</li>
-                        <li>Endpoint Detection</li>
-                        <li>Network Security</li>
-                        <li>Cloud Security</li>
+                    <h4 class="text-white font-semibold mb-6 text-lg">Security Tools</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="hover:text-concerto-gold transition-colors">Next Gen SIEM (XSIAM)</li>
+                        <li class="hover:text-concerto-gold transition-colors">SIEM Integration</li>
+                        <li class="hover:text-concerto-gold transition-colors">Threat Intelligence</li>
+                        <li class="hover:text-concerto-gold transition-colors">Endpoint Detection</li>
+                        <li class="hover:text-concerto-gold transition-colors">Network Security</li>
+                        <li class="hover:text-concerto-gold transition-colors">Cloud Security</li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-purple-800/30 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Concerto Cyber Automation Consulting LLC. All rights reserved. | Orchestrating cyber security excellence worldwide.</p>
+            <div class="border-t border-purple-800/30 mt-12 pt-8 text-center text-gray-400">
+                <p class="text-enhanced">© 2024 Concerto Cyber Automation Consulting LLC. All rights reserved. | Orchestrating cyber security excellence worldwide.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Modal Overlay -->
-    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 hidden" onclick="closeModal()">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-slate-800 border border-purple-800/30 rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 id="modal-title" class="text-2xl font-bold text-white"></h3>
-                        <button onclick="closeModal()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
-                    </div>
-                    <div id="modal-content" class="text-gray-300"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script>
+        function sendEmail() {
+            window.location.href = 'mailto:info@concertocyber.com?subject=POV Assessment Request&body=Hello, I would like to request a Proof of Value assessment to experience your SOAR automation expertise firsthand.';
+        }
 
-    <!-- JavaScript -->
-    <script src="js/main.js?a=1"></script>
+        // Enhanced smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced floating musical notes animation
+        function createMusicNote() {
+            const notes = ['♫', '♪', '♬', '♩'];
+            const note = document.createElement('div');
+            note.innerHTML = notes[Math.floor(Math.random() * notes.length)];
+            note.className = 'fixed text-concerto-gold text-3xl pointer-events-none z-10 animate-musicNote';
+            note.style.left = Math.random() * window.innerWidth + 'px';
+            note.style.top = window.innerHeight + 'px';
+            note.style.opacity = '0.7';
+            document.body.appendChild(note);
+            
+            setTimeout(() => {
+                note.remove();
+            }, 4000);
+        }
+
+        // Create music notes periodically
+        setInterval(createMusicNote, 6000);
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate-fade-in, .animate-slide-in-left, .animate-slide-in-right, .animate-fade-in-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            observer.observe(el);
+        });
+
+        // Enhanced mobile menu toggle (if needed)
+        function toggleMobileMenu() {
+            const menu = document.querySelector('.mobile-menu');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            }
+        }
+    </script>
 </body>
 </html>
-
