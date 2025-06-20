@@ -598,7 +598,7 @@ const ConcertoUtils = {
 };
 
 // Make utilities available globally
-// window.ConcertoUtils = ConcertoUtils;
+window.ConcertoUtils = ConcertoUtils;
 
 // Modal functionality for SOAR platforms and security tools
 const modalData = {
