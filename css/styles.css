@@ -1,0 +1,785 @@
+/* Concerto - Custom Styles */
+
+/* Custom animations and keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animation classes */
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-pulse-slow {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-slideInLeft {
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.animate-slideInRight {
+    animation: slideInRight 0.8s ease-out;
+}
+
+.animate-bounceIn {
+    animation: bounceIn 0.8s ease-out;
+}
+
+/* Gradient text effect */
+.gradient-text {
+    background: linear-gradient(45deg, #7C3AED, #F59E0B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Card hover effects */
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(124, 58, 237, 0.2), 0 10px 10px -5px rgba(124, 58, 237, 0.1);
+}
+
+/* Button styles */
+.btn-primary {
+    background: linear-gradient(45deg, #7C3AED, #1E40AF);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #5B21B6, #1E3A8A);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(124, 58, 237, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid #F59E0B;
+    color: #F59E0B;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: #F59E0B;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Cost calculator styles */
+.cost-calculator {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(124, 58, 237, 0.1));
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.traditional-cost {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+/* Concerto-specific color scheme */
+.text-concerto-gold {
+    color: #F59E0B;
+}
+
+.text-concerto-purple {
+    color: #7C3AED;
+}
+
+.text-concerto-blue {
+    color: #1E40AF;
+}
+
+.bg-concerto-gold {
+    background-color: #F59E0B;
+}
+
+.bg-concerto-purple {
+    background-color: #7C3AED;
+}
+
+.bg-concerto-blue {
+    background-color: #1E40AF;
+}
+
+.border-concerto-gold {
+    border-color: #F59E0B;
+}
+
+.border-concerto-purple {
+    border-color: #7C3AED;
+}
+
+.border-concerto-blue {
+    border-color: #1E40AF;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(30, 41, 59, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(124, 58, 237, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(124, 58, 237, 0.7);
+}
+
+/* Step indicator styling */
+.step-indicator {
+    position: relative;
+}
+
+.step-indicator::after {
+    content: '';
+    position: absolute;
+    top: 32px;
+    right: -50%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgba(124, 58, 237, 0.3));
+    transform: translateY(-50%);
+}
+
+.step-indicator:last-child::after {
+    display: none;
+}
+
+/* Form styling */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #F59E0B;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+/* Loading animation */
+.loading-spinner {
+    border: 3px solid rgba(124, 58, 237, 0.3);
+    border-radius: 50%;
+    border-top: 3px solid #7C3AED;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Orchestration theme elements */
+.conductor-baton {
+    position: relative;
+    display: inline-block;
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to bottom, #F59E0B, #7C3AED);
+    transform: rotate(45deg);
+    margin: 0 10px;
+}
+
+.conductor-baton::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -2px;
+    width: 6px;
+    height: 6px;
+    background: #F59E0B;
+    border-radius: 50%;
+}
+
+/* Responsive design enhancements */
+@media (max-width: 768px) {
+    .gradient-text {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    
+    .card-hover {
+        transform: none;
+    }
+    
+    .card-hover:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform: none;
+    }
+    
+    .step-indicator::after {
+        display: none;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+a:focus {
+    outline: 2px solid #F59E0B;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .gradient-text {
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: unset;
+        background-clip: unset;
+        color: #F59E0B;
+    }
+    
+    .cost-calculator,
+    .traditional-cost {
+        border-width: 2px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .btn-primary,
+    .btn-secondary,
+    button {
+        display: none;
+    }
+    
+    .animate-fadeInUp,
+    .animate-pulse-slow,
+    .animate-float,
+    .animate-slideInLeft,
+    .animate-slideInRight,
+    .animate-bounceIn,
+    
+    .card-hover {
+        box-shadow: none;
+        transform: none;
+    }
+}
+
+/* Custom utility classes */
+.text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.backdrop-blur-strong {
+    backdrop-filter: blur(20px);
+}
+
+.border-gradient {
+    border-image: linear-gradient(45deg, #7C3AED, #F59E0B) 1;
+}
+
+/* Interactive elements */
+.interactive-element {
+    cursor: pointer;
+    user-select: none;
+}
+
+.interactive-element:active {
+    transform: scale(0.98);
+}
+
+/* Smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Container max-width adjustments */
+.container {
+    max-width: 1200px;
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+
+/* Security-themed background patterns */
+.security-pattern {
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+}
+
+/* Orchestration wave effect */
+.wave-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.wave-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.1), transparent);
+    animation: wave 3s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Cyber grid background */
+.cyber-grid {
+    background-image: 
+        linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Glowing effect for important elements */
+.glow-effect {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.glow-effect:hover {
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+}
+
+/* Musical staff lines */
+.musical-staff {
+    position: relative;
+    padding: 20px 0;
+}
+
+.musical-staff::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 8px,
+        rgba(245, 158, 11, 0.2) 8px,
+        rgba(245, 158, 11, 0.2) 9px
+    );
+    pointer-events: none;
+}
+
+/* Concerto brand elements */
+.concerto-accent {
+    position: relative;
+}
+
+.concerto-accent::after {
+    content: '♫';
+    position: absolute;
+    top: -5px;
+    right: -15px;
+    color: #F59E0B;
+    font-size: 0.7em;
+    opacity: 0.7;
+}
+
+/* Enhanced hover states */
+.enhanced-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enhanced-hover:hover {
+    transform: translateY(-2px) scale(1.02);
+    filter: brightness(1.1);
+}
+
+/* Cyber security themed elements */
+.security-shield {
+    position: relative;
+    display: inline-block;
+}
+
+.security-shield::before {
+    content: '🛡️';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 0.8em;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Professional consulting theme */
+.consulting-badge {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(124, 58, 237, 0.2));
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #F59E0B;
+}
+
+/* Expertise indicators */
+.expertise-level {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.expertise-star {
+    color: #F59E0B;
+    font-size: 0.875rem;
+}
+
+/* Call-to-action enhancements */
+.cta-enhanced {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.cta-enhanced:hover::before {
+    left: 100%;
+}
+
+/* Service card enhancements */
+.service-card {
+    background: rgba(30, 41, 59, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #7C3AED, #F59E0B);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+.service-card:hover {
+    border-color: rgba(245, 158, 11, 0.5);
+    background: rgba(30, 41, 59, 0.7);
+    transform: translateY(-5px);
+}
+
+/* Footer enhancements */
+.footer-link {
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #F59E0B;
+}
+
+/* Mobile menu enhancements */
+.mobile-menu-item {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-item:hover {
+    padding-left: 10px;
+    color: #F59E0B;
+}
+
+/* Progress indicators */
+.progress-bar {
+    height: 4px;
+    background: rgba(124, 58, 237, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7C3AED, #F59E0B);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+/* Testimonial styling */
+.testimonial-card {
+    background: rgba(30, 41, 59, 0.6);
+    border-left: 4px solid #F59E0B;
+    backdrop-filter: blur(10px);
+}
+
+/* Statistics counter styling */
+.stat-counter {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-shadow: 0 0 10px currentColor;
+}
+
+/* Security automation theme */
+.automation-flow {
+    position: relative;
+}
+
+.automation-flow::after {
+    content: '→';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #F59E0B;
+    font-size: 1.5em;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.automation-flow:last-child::after {
+    display: none;
+}
+
+/* Enhanced typography */
+.heading-accent {
+    position: relative;
+    display: inline-block;
+}
+
+.heading-accent::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #7C3AED, #F59E0B);
+    border-radius: 2px;
+}
+
+/* Interactive elements for engagement */
+.interactive-card {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-card:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
+}
+
+/* Brand consistency elements */
+.brand-element {
+    position: relative;
+}
+
+.brand-element::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(124, 58, 237, 0.05), rgba(245, 158, 11, 0.05));
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+/* Performance optimizations */
+.gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Dark theme enhancements */
+.dark-surface {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(124, 58, 237, 0.1);
+}
+
+.dark-surface-hover:hover {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+/* Professional consulting aesthetics */
+.professional-gradient {
+    background: linear-gradient(135deg, 
+        rgba(124, 58, 237, 0.1) 0%, 
+        rgba(30, 64, 175, 0.1) 50%, 
+        rgba(245, 158, 11, 0.1) 100%);
+}
+
+.consulting-professional {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    letter-spacing: -0.025em;
+}
+
+/* Final touches for brand cohesion */
+.concerto-theme {
+    --primary-color: #7C3AED;
+    --secondary-color: #F59E0B;
+    --accent-color: #1E40AF;
+    --surface-color: rgba(15, 23, 42, 0.8);
+    --text-primary: #FFFFFF;
+    --text-secondary: #CBD5E1;
+    --border-color: rgba(124, 58, 237, 0.2);
+}
+
+/* Ensure all elements use the theme */
+.concerto-theme * {
+    border-color: var(--border-color);
+}
+
+.concerto-theme .text-primary {
+    color: var(--text-primary);
+}
+
+.concerto-theme .text-secondary {
+    color: var(--text-secondary);
+}
+
+.concerto-theme .bg-surface {
+    background: var(--surface-color);
+}
+
+.concerto-theme .border-theme {
+    border-color: var(--border-color);
+}
+
+.concerto-theme .text-accent {
+    color: var(--secondary-color);
+}
+
+.concerto-theme .bg-accent {
+    background: var(--secondary-color);
+}
+
